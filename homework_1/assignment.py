@@ -32,7 +32,7 @@ def d():
 def e():
     x = 432
     y = 231
-    # One liner
+    
     if x > y:
         print("BIG")
     elif x < y:
