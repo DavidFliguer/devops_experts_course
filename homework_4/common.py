@@ -1,6 +1,8 @@
 from selenium import webdriver
 import platform
 
+from selenium.webdriver.chrome.options import Options
+
 
 def prepare_web_driver(webdriver_type, implicit_wait_time=30, screen_manipulation=None):
     # Set driver as None
@@ -11,7 +13,10 @@ def prepare_web_driver(webdriver_type, implicit_wait_time=30, screen_manipulatio
         if platform.system() == 'Windows':
             driver = webdriver.Chrome("chromedriver.exe")
         elif platform.system() == 'Linux':
-            driver = webdriver.Chrome("./chromedriver")
+            chrome_options = Options()
+            chrome_options.add_argument("--headless")
+            chrome_options.add_argument('--no-sandbox')
+            driver = webdriver.Chrome("./chromedriver", options=chrome_options)
     elif webdriver_type == 'firefox':
         driver = webdriver.Firefox(executable_path="./")
 
