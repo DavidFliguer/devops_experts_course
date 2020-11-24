@@ -9,7 +9,7 @@ chrome_driver = common.prepare_web_driver('chrome', screen_manipulation='maximiz
 chrome_driver.get("https://translate.google.com/")
 
 # Type in hebrew
-chrome_driver.find_element_by_id("source").send_keys("שלום עולם")
+chrome_driver.find_element_by_xpath("//textarea").send_keys("שלום עולם")
 
 # Some sleep so you can see it...
 time.sleep(5)
