@@ -1,4 +1,5 @@
 from selenium import webdriver
+import platform
 
 
 def prepare_web_driver(webdriver_type, implicit_wait_time=30, screen_manipulation=None):
@@ -7,9 +8,12 @@ def prepare_web_driver(webdriver_type, implicit_wait_time=30, screen_manipulatio
 
     # Create a webdriver
     if webdriver_type == 'chrome':
-        driver = webdriver.Chrome("chromedriver.exe")
+        if platform.system() == 'Windows':
+            driver = webdriver.Chrome("chromedriver.exe")
+        elif platform.system() == 'Linux':
+            driver = webdriver.Chrome("./chromedriver")
     elif webdriver_type == 'firefox':
-        driver = webdriver.Firefox(executable_path="geckodriver.exe")
+        driver = webdriver.Firefox(executable_path="./")
 
     # Set implicit wait
     driver.implicitly_wait(implicit_wait_time)
